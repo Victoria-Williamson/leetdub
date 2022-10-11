@@ -67,7 +67,7 @@ class Solution:
     def employeeFreeTime(self, schedule: '[[Interval]]') -> '[Interval]':
         for s in schedule:
             self.mergeSchedule(s)
-            print("".join(str([self.mergedSchedule[i].start, self.mergedSchedule[i].end]) for i in range(len(self.mergedSchedule))))
+           
         
         sol = []
         for i in range(1, len(self.mergedSchedule)):
