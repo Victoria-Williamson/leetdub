@@ -37,10 +37,6 @@ class Solution:
                 self.mergedSchedule[mIndex].start = min(self.mergedSchedule[mIndex].start, schedule[sIndex].start)
                 self.mergedSchedule[mIndex].end = max(self.mergedSchedule[mIndex].end, schedule[sIndex].end)
                 
-                while mIndex - 1 >= 0 and self.mergedSchedule[mIndex].start <= self.mergedSchedule[mIndex - 1].end:
-                    self.mergedSchedule[mIndex].start = min(self.mergedSchedule[mIndex -1].start,self.mergedSchedule[mIndex].start)
-                    self.mergedSchedule.pop(mIndex - 1)
-                    mIndex -= 1
                 while mIndex + 1 < len(self.mergedSchedule) and self.mergedSchedule[mIndex].end >= self.mergedSchedule[mIndex + 1].start:
                     self.mergedSchedule[mIndex].end = max(self.mergedSchedule[mIndex + 1].end,self.mergedSchedule[mIndex].end)
                     self.mergedSchedule.pop(mIndex+1)
