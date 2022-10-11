@@ -1,32 +1,30 @@
 class Solution:
     def __init__(self):
         self.prereqs = {}
-        self.timeToComplete = []
+        self.completed = []
         self.times = []
         
     def findTimeToComplete(self,course):
-        print("Visiting", course)
-        if self.timeToComplete[course] != -1:
+        if self.completed[course] != -1:
             return 0
         
         if course not in self.prereqs:
-            self.timeToComplete[course] = self.times[course]
+            self.completed[course] = self.times[course]
             return self.times[course]
         
         timeToComplete = 0
         for prereq in self.prereqs[course]:
-            if not self.timeToComplete[prereq] != -1 and prereq in self.prereqs:
+            if not self.completed[prereq] != -1 and prereq in self.prereqs:
                 timeToComplete = max(timeToComplete, self.findTimeToComplete(prereq))
-            elif not self.timeToComplete[prereq] != -1:
+            elif not self.completed[prereq] != -1:
                 timeToComplete = max(timeToComplete, self.times[prereq])
-                self.timeToComplete[prereq] = self.times[prereq]
-            elif self.timeToComplete[prereq] != -1:
-                timeToComplete = max(timeToComplete, self.timeToComplete[prereq])
+                self.completed[prereq] = self.times[prereq]
+            elif self.completed[prereq] != -1:
+                timeToComplete = max(timeToComplete, self.completed[prereq])
         
        
-        self.timeToComplete[course] = timeToComplete + self.times[course]
+        self.completed[course] = timeToComplete + self.times[course]
         
-        print(course, timeToComplete + self.times[course])
         return timeToComplete + self.times[course]
     
     def minimumTime(self, n: int, relations: List[List[int]], time: List[int]) -> int:
@@ -43,7 +41,7 @@ class Solution:
         self.times.extend(time)
         
         # Initilize Completed Array
-        self.timeToComplete = [-1 for i in range(n + 1)]
+        self.completed = [-1 for i in range(n + 1)]
         
         totalTime = 0
         for course in range(1, n + 1):
