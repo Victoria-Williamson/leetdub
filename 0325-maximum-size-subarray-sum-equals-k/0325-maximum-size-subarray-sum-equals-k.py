@@ -5,7 +5,7 @@ class Solution:
         current = 0
         sol = 0
         
-        for i in range(0,len(nums)):
+        for i in range(len(nums)):
             current += nums[i]
             
             if current == k:
