@@ -15,7 +15,6 @@ class Solution:
             else:
                 seen.add(s[i])
             
-            print(s[i], goal[i], swapped)
             if s[i] != goal[i]:
                 if swapped:
                     return False
