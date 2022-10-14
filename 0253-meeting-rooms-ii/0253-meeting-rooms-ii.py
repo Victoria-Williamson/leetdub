@@ -10,7 +10,7 @@ class Solution:
         for interval in intervals:
             
             if len(filledRooms) > 0:
-                print(filledRooms)
+               
                 end, _ = filledRooms[0]
                 while end <= interval[0]:
                     heapq.heappop(filledRooms)
@@ -21,7 +21,7 @@ class Solution:
                 
             heapq.heappush(filledRooms,(interval[1], interval[0]))
             roomsNeeded = max(len(filledRooms), roomsNeeded)
-            print(filledRooms)
+           
            
         return roomsNeeded
     
