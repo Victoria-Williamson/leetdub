@@ -31,17 +31,12 @@ class Solution:
             course = q.pop(0)
             if not visited[course]:
                 if course in nextCourses:
-                    update = set()
+                    
                     for nextCourse in nextCourses[course]:
                         numPreqs[nextCourse] -= 1
                         if numPreqs[nextCourse] == 0 and not visited[nextCourse]:
                             q.append(nextCourse)
-                        else:
-                            update.add(nextCourse)
-                    if len(update) == 0:
-                        nextCourses.pop(course)
-                    else:
-                        nextCourses[course] = update
+                     
                    
                 completed += 1
                 visited[course] = True
