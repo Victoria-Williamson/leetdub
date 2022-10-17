@@ -36,7 +36,7 @@ class Solution:
                             q.append(nextCourse)
                 completed += 1
                 visited[course] = True
-        print(completed)
+ 
         return completed == numCourses
                 
         
