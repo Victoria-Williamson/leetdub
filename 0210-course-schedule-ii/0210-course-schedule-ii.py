@@ -26,7 +26,9 @@ class Solution:
                     
                     for nextCourse in nextCourses[course]:
                         numPreqs[nextCourse] -= 1
-                        if numPreqs[nextCourse] == 0 and not visited[nextCourse]:
+                        if numPreqs[nextCourse] == 0:
+                            if visited[nextCourse]:
+                                print(nextCourse)
                             q.append(nextCourse)
                      
                    
