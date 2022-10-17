@@ -16,10 +16,11 @@ class Solution:
         for prereq in prereqs:
             numPreqs[prereq[0]] += 1
             
-            if prereq[1] in nextCourses:
-                nextCourses[prereq[1]].append(prereq[0])
-            else:
-                nextCourses[prereq[1]] = [prereq[0]]
+            if prereq[1] not in nextCourses:
+                nextCourses[prereq[1]] = set()
+            nextCourses[prereq[1]].add(prereq[0])
+
+                
         
         for course in range(numCourses):
             if numPreqs[course] == 0:
@@ -30,10 +31,18 @@ class Solution:
             course = q.pop(0)
             if not visited[course]:
                 if course in nextCourses:
+                    update = set()
                     for nextCourse in nextCourses[course]:
                         numPreqs[nextCourse] -= 1
                         if numPreqs[nextCourse] == 0 and not visited[nextCourse]:
                             q.append(nextCourse)
+                        else:
+                            update.add(nextCourse)
+                    if len(update) == 0:
+                        nextCourses.pop(course)
+                    else:
+                        nextCourses[course] = update
+                   
                 completed += 1
                 visited[course] = True
  
