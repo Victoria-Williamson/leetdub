@@ -1,17 +1,17 @@
 class Solution:
     def maxProfitAssignment(self, difficulty: List[int], profit: List[int], worker: List[int]) -> int:
-        jobs = [[-1 * profit[i], difficulty[i]] for i in range(len(profit))]
-        heapq.heapify(jobs)
+        jobs = [[profit[i], difficulty[i]] for i in range(len(profit))]
+        jobs.sort(reverse=True)
         
         worker.sort(reverse=True)
         
         profits = 0
         while jobs and worker:
-            profit, difficulty = heapq.heappop(jobs)
+            profit, difficulty = jobs.pop(0)
             
             while worker and difficulty <=  worker[0]:
                 w = worker.pop(0)
-                profits -= profit
+                profits += profit
         return profits
             
             
