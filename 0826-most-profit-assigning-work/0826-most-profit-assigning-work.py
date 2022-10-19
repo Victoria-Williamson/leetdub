@@ -8,7 +8,7 @@ class Solution:
         heapq.heapify(worker)
         
         profits = 0
-        while jobs:
+        while jobs and worker:
             profit, difficulty = heapq.heappop(jobs)
             
             while worker and difficulty <= -1 * worker[0]:
