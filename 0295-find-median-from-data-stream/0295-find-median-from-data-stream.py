@@ -16,6 +16,7 @@ class MedianFinder:
         if len(self.right) == 0 and len(self.left) == 0:
             self.right.append(num)
         elif len(self.left) == 0:
+            print(num, self.right)
             if num > self.right[0]:
                 oldRight = heapq.heappop(self.right)
                 heapq.heappush(self.right, num)
