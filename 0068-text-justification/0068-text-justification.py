@@ -1,7 +1,6 @@
 class Solution:
     def fullJustify(self, words: List[str], maxWidth: int) -> List[str]:
         groups = []
-        levels = []
         
         lCount = 0
         tCount = 0
@@ -46,9 +45,9 @@ class Solution:
         if lCount > 0:
             groups.append((lCount - 1, lWords, tCount))
         
-        for g in groups[:-1]:
-            c, w, t = g
-            levels.append(addLevel(c,w,t))
+        for i in range(len(groups) - 1):
+            c, w, t = groups[i]
+            groups[i] = addLevel(c,w,t)
         
         temp = ""
        
@@ -57,8 +56,8 @@ class Solution:
             temp +=  word + " "
 
         temp += w[-1] + " " * (maxWidth - len(temp) - len(w[-1]))
-        levels.append(temp)
-        return levels
+        groups[-1] = temp
+        return groups
         
                 
         
