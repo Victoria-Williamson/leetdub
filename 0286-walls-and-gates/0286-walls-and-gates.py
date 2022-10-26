@@ -4,7 +4,6 @@ class Solution:
         Do not return anything, modify rooms in-place instead.
         """
         INF = (2 ** 31) - 1
-        gates = []
         def isValidMove(x,y):
             if x >= 0 and x < len(rooms) and y >= 0 and y < len(rooms[0]):
                 return True
@@ -13,7 +12,6 @@ class Solution:
         def addAround(x,y,dist):
             if not isValidMove(x,y) or rooms[x][y] == -1:
                 return 
-            
             if dist < rooms[x][y]:
                 rooms[x][y] = dist
                 for xMove, yMove in [(1,0), (0,1), (-1,0), (0,-1)]:
