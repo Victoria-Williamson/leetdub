@@ -32,7 +32,8 @@ class Solution:
         
         for i in range(len(rooms)):
             for j in range(len(rooms[0])):
-                findGate(i,j)
+                if rooms[i][j] == 0:
+                    findGate(i,j)
         
        
             
