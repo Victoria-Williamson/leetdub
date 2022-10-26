@@ -1,6 +1,5 @@
 class Solution:
     def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
-        paths = {}
         jobs = []
         maxProfits = []
         
@@ -12,7 +11,6 @@ class Solution:
             
         
         end, index = heapq.heappop(jobs)
-        paths[endTime[index]] = profit[index]
         maxProfits.append((-1 * profit[index], endTime[index]))
         
         while len(jobs) != 0:
@@ -31,24 +29,9 @@ class Solution:
                     break
                 else:
                     heapq.heappush(maxProfits, (-1 * profits, end))
-#             for end in sorted(paths.keys(), reverse=True):
-#                 profits = paths[end]
-#                 if end <= start:
-#                     if endTime[index] not in paths:
-#                         paths[endTime[index]] = 0
-#                     paths[endTime[index]] = max(paths[endTime[index]], profits + profit[index])
-#                     maxProfit = max(maxProfit,  profits + profit[index])
-                    
-#                     added = True
-#                 else:
-#                     break
-            
             if not added:
                 heapq.heappush(maxProfits, (-1 * (profit[index]), endTime[index]))
-                # if endTime[index] not in paths:
-                #     paths[endTime[index]] = 0
-                # paths[endTime[index]] = max(paths[endTime[index]], profit[index])
-        print(maxProfits)
+
         return maxProfit
         
             
