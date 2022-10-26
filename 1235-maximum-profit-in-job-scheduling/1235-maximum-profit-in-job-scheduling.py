@@ -1,9 +1,8 @@
 class Solution:
     def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
-        jobs = []
-        maxProfits = []
-        
-        maxProfit = 0
+        jobs = [] # priority queue, prioritizing job startTime
+        maxProfits = [] # priority queue, prioritizing profit
+        maxProfit = 0 
         
         for i in range(len(endTime)):
             heapq.heappush(jobs,(startTime[i], i))
