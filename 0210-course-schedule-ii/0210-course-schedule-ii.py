@@ -1,40 +1,33 @@
 class Solution:
-    def findOrder(self, numCourses: int, prereqs: List[List[int]]) -> List[int]:
-        numPreqs = [0 for i in range(numCourses)]
-        visited = [False for i in range(numCourses)]
-        q = []
-        nextCourses = {}
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        coursesRem = [0 for i in range(numCourses)]
+        nextCourses = {i : [] for i in range(numCourses)}
+        order = []
+        seen = set()
+        ready = []
         
-        for prereq in prereqs:
-            numPreqs[prereq[0]] += 1
-            
-            if prereq[1] not in nextCourses:
-                nextCourses[prereq[1]] = set()
-            nextCourses[prereq[1]].add(prereq[0])
-
+        for preReq in prerequisites:
+            nextCourses[preReq[1]].append(preReq[0])
+            coursesRem[preReq[0]] += 1
                 
         
         for course in range(numCourses):
-            if numPreqs[course] == 0:
-                q.append(course)
+            if coursesRem[course] == 0:
+                ready.append(course)
         
-        completed = []
-        while q:
-            course = q.pop(0)
-            if not visited[course]:
-                if course in nextCourses:
-                    
-                    for nextCourse in nextCourses[course]:
-                        numPreqs[nextCourse] -= 1
-                        if numPreqs[nextCourse] == 0:
-                            q.append(nextCourse)
-                     
-                   
-                completed.append(course)
-                visited[course] = True
- 
-        if len(completed) == numCourses:
-            return completed
-        else:
+        while ready:
+            course = ready.pop(0)
+            if course not in seen:
+                for c in nextCourses[course]:
+                    coursesRem[c] -= 1
+                    if  coursesRem[c] == 0:
+                        ready.append(c)
+                seen.add(course)
+                order.append(course)
+        if len(order) != numCourses:
             return []
+        return order
+            
+        
+        
         
